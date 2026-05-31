@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:customer-support-reply-workflow:kb-schema",
-  "title": "Customer Support Knowledge Entry",
+  "$id": "urn:customer-issue-reply-workflow:kb-schema",
+  "title": "Customer Issue Knowledge Entry",
   "type": "object",
   "required": [
     "问题类型",

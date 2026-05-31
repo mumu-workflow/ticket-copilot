@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:customer-support-reply-workflow:field-schema",
-  "title": "Customer Support Reply Workflow Record",
+  "$id": "urn:customer-issue-reply-workflow:field-schema",
+  "title": "Customer Issue Reply Workflow Record",
   "type": "object",
   "required": [
     "ticket_number",

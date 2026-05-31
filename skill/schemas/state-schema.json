@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:customer-support-reply-workflow:state-schema",
-  "title": "Customer Support Reply Workflow State Machine",
+  "$id": "urn:customer-issue-reply-workflow:state-schema",
+  "title": "Customer Issue Reply Workflow State Machine",
   "type": "object",
   "required": ["states", "attachment_states", "transitions"],
   "properties": {
