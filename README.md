@@ -43,21 +43,48 @@ Use it as a starting point for helpdesk workflows, customer request triage, inte
 ## Workflow
 
 ```mermaid
-flowchart TD
-    A["Customer submits a question"] --> B["Normalize description"]
-    A --> C["Parse optional attachments"]
-    B --> D{"Both steps completed?"}
-    C --> D
-    D -->|Yes| E{"Missing information?"}
-    E -->|Yes| F["Generate supplement request"]
-    F --> G["Staff review and confirm copy"]
-    G --> H["Staff manually send request"]
-    H --> I["待补充信息"]
-    E -->|No| J["Generate external draft reply"]
-    J --> K["待发送确认"]
-    K --> L["Staff review and confirm copy"]
-    L --> M["Staff manually send reply"]
-    M --> N["已完成"]
+flowchart TB
+    A["Customer question<br/>Text + optional attachment"] --> S0["待分析"]
+
+    subgraph P1["1. AI-assisted intake · Standardize inputs"]
+        S0 --> B["Normalize description<br/>Preserve facts and identifiers"]
+        S0 --> C["Parse attachments<br/>无附件 · 解析成功 · 格式不支持 · 解析失败"]
+        B --> D{"Description and attachment<br/>parsing both complete?"}
+        C --> D
+        D -->|No| W0["Wait for complete inputs<br/>Do not generate a draft"]
+        W0 -.-> D
+    end
+
+    subgraph P2["2. Rules-first triage · Improve reply quality"]
+        D -->|Yes| E{"Missing key information?"}
+        E -->|Yes| F["Draft supplement request"]
+        E -->|No| J["Match verified knowledge + phrasebook<br/>Optional enhancement"]
+        J --> K["Generate copy-ready draft reply"]
+    end
+
+    subgraph P3["3. Employee review · Keep outbound communication controlled"]
+        F --> R1["Employee reviews and confirms copy"]
+        K --> S1["待发送确认"]
+        S1 --> R2["Employee reviews, revises,<br/>and confirms copy"]
+        R1 --> M1["Employee sends manually"]
+        R2 --> M2["Employee sends manually"]
+    end
+
+    M1 --> S2["待补充信息<br/>Collect missing context"]
+    S2 -. "Customer adds details" .-> S0
+    M2 --> S3["已完成<br/>Retain employee-confirmed reply"]
+
+    classDef state fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:2px
+    classDef ai fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A
+    classDef guard fill:#F5F3FF,stroke:#7C3AED,color:#4C1D95
+    classDef human fill:#ECFDF5,stroke:#059669,color:#064E3B
+    classDef outcome fill:#F0FDFA,stroke:#0F766E,color:#134E4A,stroke-width:2px
+
+    class S0,S1,S2 state
+    class B,C,F,J,K ai
+    class D,E,W0 guard
+    class R1,R2,M1,M2 human
+    class S3 outcome
 ```
 
 ## Fixed States
