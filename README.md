@@ -44,35 +44,35 @@ Use it as a starting point for helpdesk workflows, customer request triage, inte
 
 ```mermaid
 flowchart TB
-    A["Customer question<br/>Text + optional attachment"] --> S0["待分析"]
+    A["Customer question / 客户问题<br/>Text + optional attachment / 文本 + 可选附件"] --> S0["待分析<br/>Pending analysis"]
 
-    subgraph P1["1. AI-assisted intake · Standardize inputs"]
-        S0 --> B["Normalize description<br/>Preserve facts and identifiers"]
-        S0 --> C["Parse attachments<br/>无附件 · 解析成功 · 格式不支持 · 解析失败"]
-        B --> D{"Description and attachment<br/>parsing both complete?"}
+    subgraph P1["1. AI-assisted intake / AI 辅助预处理 · Standardize inputs / 统一输入质量"]
+        S0 --> B["Normalize description / 修正问题描述<br/>Preserve facts and identifiers / 保留事实与关键标识"]
+        S0 --> C["Parse attachments / 解析附件<br/>No attachment 无附件 · Parsed 解析成功<br/>Unsupported 格式不支持 · Failed 解析失败"]
+        B --> D{"Description and attachment parsing complete?<br/>描述修正与附件解析是否均已完成？"}
         C --> D
-        D -->|No| W0["Wait for complete inputs<br/>Do not generate a draft"]
+        D -->|No / 否| W0["Wait for complete inputs / 等待输入完整<br/>Do not generate a draft / 不生成预回复"]
         W0 -.-> D
     end
 
-    subgraph P2["2. Rules-first triage · Improve reply quality"]
-        D -->|Yes| E{"Missing key information?"}
-        E -->|Yes| F["Draft supplement request"]
-        E -->|No| J["Match verified knowledge + phrasebook<br/>Optional enhancement"]
-        J --> K["Generate copy-ready draft reply"]
+    subgraph P2["2. Rules-first triage / 规则优先分流 · Improve reply quality / 提升回复质量"]
+        D -->|Yes / 是| E{"Missing key information?<br/>是否缺少关键信息？"}
+        E -->|Yes / 是| F["Draft supplement request<br/>生成补充信息话术"]
+        E -->|No / 否| J["Match verified knowledge + phrasebook<br/>匹配已验证知识库与话术库 · Optional / 可选增强"]
+        J --> K["Generate copy-ready draft reply<br/>生成可复制的对外预回复"]
     end
 
-    subgraph P3["3. Employee review · Keep outbound communication controlled"]
-        F --> R1["Employee reviews and confirms copy"]
-        K --> S1["待发送确认"]
-        S1 --> R2["Employee reviews, revises,<br/>and confirms copy"]
-        R1 --> M1["Employee sends manually"]
-        R2 --> M2["Employee sends manually"]
+    subgraph P3["3. Employee review / 员工确认 · Control outbound communication / 控制对外沟通风险"]
+        F --> R1["Employee reviews and confirms copy<br/>员工查看并确认复制"]
+        K --> S1["待发送确认<br/>Pending send confirmation"]
+        S1 --> R2["Employee reviews, revises, and confirms copy<br/>员工查看、按需修正并确认复制"]
+        R1 --> M1["Employee sends manually<br/>员工手动发送"]
+        R2 --> M2["Employee sends manually<br/>员工手动发送"]
     end
 
-    M1 --> S2["待补充信息<br/>Collect missing context"]
-    S2 -. "Customer adds details" .-> S0
-    M2 --> S3["已完成<br/>Retain employee-confirmed reply"]
+    M1 --> S2["待补充信息<br/>Pending additional details"]
+    S2 -. "Customer adds details / 客户补充后重新分析" .-> S0
+    M2 --> S3["已完成<br/>Completed · Retain employee-confirmed reply / 沉淀员工确认版本"]
 
     classDef state fill:#FFF7ED,stroke:#EA580C,color:#7C2D12,stroke-width:2px
     classDef ai fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A
