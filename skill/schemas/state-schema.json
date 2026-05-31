@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:customer-support-reply-workflow:state-schema",
+  "title": "Customer Support Reply Workflow State Machine",
+  "type": "object",
+  "required": ["states", "attachment_states", "transitions"],
+  "properties": {
+    "states": {
+      "const": ["待分析", "待补充信息", "待发送确认", "已完成"]
+    },
+    "attachment_states": {
+      "const": ["无附件", "解析成功", "格式不支持", "解析失败"]
+    },
+    "transitions": {
+      "const": [
+        {
+          "from": "待分析",
+          "event": "supplement_request_confirmed",
+          "to": "待补充信息"
+        },
+        {
+          "from": "待补充信息",
+          "event": "customer_information_updated",
+          "to": "待分析"
+        },
+        {
+          "from": "待分析",
+          "event": "external_draft_reply_generated",
+          "to": "待发送确认"
+        },
+        {
+          "from": "待发送确认",
+          "event": "formal_reply_confirmed",
+          "to": "已完成"
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:customer-support-reply-workflow:kb-schema",
+  "title": "Customer Support Knowledge Entry",
+  "type": "object",
+  "required": [
+    "问题类型",
+    "触发关键词",
+    "标准回复",
+    "适用场景",
+    "限制条件",
+    "教程标题",
+    "教程链接",
+    "是否已验证",
+    "更新时间"
+  ],
+  "properties": {
+    "问题类型": {
+      "type": "string"
+    },
+    "触发关键词": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "标准回复": {
+      "type": "string"
+    },
+    "适用场景": {
+      "type": "string"
+    },
+    "限制条件": {
+      "type": "string"
+    },
+    "教程标题": {
+      "type": "string"
+    },
+    "教程链接": {
+      "const": "https://hc.huoban.com/"
+    },
+    "是否已验证": {
+      "enum": ["是", "否"]
+    },
+    "更新时间": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:customer-support-reply-workflow:field-schema",
+  "title": "Customer Support Reply Workflow Record",
+  "type": "object",
+  "required": [
+    "ticket_number",
+    "customer_description",
+    "description_rewrite_status",
+    "attachment_parse_status",
+    "status"
+  ],
+  "properties": {
+    "ticket_number": {
+      "type": "string"
+    },
+    "customer_description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "attachment_extracted_text": {
+      "type": "string"
+    },
+    "agent_revision": {
+      "type": "string"
+    },
+    "agent_revision_note": {
+      "type": "string"
+    },
+    "normalized_description": {
+      "type": "string"
+    },
+    "description_rewrite_status": {
+      "enum": ["待处理", "已完成"]
+    },
+    "attachment_parse_status": {
+      "enum": ["无附件", "解析成功", "格式不支持", "解析失败"]
+    },
+    "attachment_summary": {
+      "type": "string"
+    },
+    "attachment_structured_result": {
+      "type": "object"
+    },
+    "attachment_parse_error": {
+      "type": "string"
+    },
+    "need_more_information": {
+      "type": "boolean"
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "internal_basis": {
+      "type": "object",
+      "properties": {
+        "knowledge_match": {
+          "type": "string"
+        },
+        "rule_match": {
+          "type": "string"
+        },
+        "missing_information": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "supplement_request": {
+      "type": "string"
+    },
+    "external_draft_reply": {
+      "type": "string"
+    },
+    "confirmed_reply": {
+      "type": "string"
+    },
+    "confirmed_by": {
+      "type": "string"
+    },
+    "confirmed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": ["待分析", "待补充信息", "待发送确认", "已完成"]
+    }
+  },
+  "additionalProperties": false
+}
