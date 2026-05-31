@@ -1,16 +1,16 @@
 ---
-name: customer-support-reply-workflow
-description: Design, document, review, or validate a customer support workflow that rewrites customer questions, parses attachments, requests missing information, prepares copyable replies, requires manual review, and records the confirmed version. Use when users need a reusable support ticket reply workflow, prompt structure, field schema, state machine, or sanitized public template. Never automate sending.
+name: ticket-copilot
+description: Design, document, review, or validate a human-in-the-loop workflow that rewrites customer questions, parses attachments, requests missing information, prepares copyable replies, requires employee review, and records the confirmed version. Use when users need a reusable customer request workflow, prompt structure, field schema, state machine, or sanitized public template. Never automate sending.
 ---
 
-# Customer Support Reply Workflow
+# Customer Issue Reply Workflow
 
-Use this Skill to design or review a customer support reply workflow with mandatory human review.
+Use this Skill to design or review a customer question reply workflow with mandatory employee review.
 
 ## Hard Rules
 
 - Never send messages automatically.
-- Require customer service staff to review every reply.
+- Require employees to review every reply.
 - Treat “confirm copy” as a copy-and-record action only.
 - Keep external replies free of model reasoning.
 - Store only knowledge matches, rule matches, and missing information in internal basis.
