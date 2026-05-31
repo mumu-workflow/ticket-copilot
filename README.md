@@ -2,15 +2,15 @@
 
 # Ticket Copilot
 
-**Turn vague customer questions into human-reviewed, copy-ready support replies.**
+**Turn vague customer questions into human-reviewed, copy-ready replies.**
 
-Ticket Copilot is an open workflow template for support teams. It normalizes customer questions, parses optional attachments, identifies missing information, drafts reply suggestions, and records the final human-confirmed version.
+Ticket Copilot is a lightweight, reusable workflow template for teams handling customer requests. It normalizes vague questions, parses optional attachments, identifies missing information, drafts reply suggestions, and records the final employee-confirmed version.
 
-It is intentionally human-in-the-loop: AI prepares the draft, but support staff always review, copy, and send the final message manually.
+It is intentionally human-in-the-loop: AI prepares the draft, but employees always review, copy, and send the final message manually. It does not automate outbound messaging.
 
 ## Why Ticket Copilot?
 
-Support teams repeatedly spend time clarifying incomplete questions and rewriting similar answers. Ticket Copilot provides a reusable MVP for:
+Teams repeatedly spend time clarifying incomplete questions and rewriting similar answers. Ticket Copilot provides a practical MVP for:
 
 - Standardizing vague customer questions without inventing facts
 - Requesting the right missing information
@@ -18,12 +18,25 @@ Support teams repeatedly spend time clarifying incomplete questions and rewritin
 - Separating internal decision basis from customer-facing text
 - Preserving the final confirmed reply for future reuse
 
+Use it as a starting point for helpdesk workflows, customer request triage, internal knowledge base integration, standard phrasebooks, AI reply assistants, and human-in-the-loop automation.
+
+## What You Get
+
+| Capability | Included in v1.0.0 |
+|---|---|
+| Description normalization | Minimal rewrite while preserving links, IDs, paths, and error codes |
+| Attachment parsing | Four fixed states: no attachment, parsed, unsupported format, failed |
+| Missing-information gate | Distinguishes supplement requests from formal draft replies |
+| Human review workflow | Employees review, revise, confirm copy, and send manually |
+| Structured public template | Field schema, state machine, trigger matrix, prompt structures, and sanitized examples |
+| Optional knowledge base | The MVP runs without one; sample entries are included for extension |
+
 ## Core Principles
 
 1. AI draft replies are never sent automatically.
-2. Every reply must be reviewed by support staff.
+2. Every reply must be reviewed by an employee.
 3. “Confirm copy” only copies and records the approved reply.
-4. Support staff manually paste and send messages through their existing tools.
+4. Employees manually paste and send messages through existing tools.
 5. Customer-facing replies never include model reasoning.
 6. Rules take priority over AI-generated text.
 
@@ -87,6 +100,15 @@ examples/   Sanitized cases, knowledge entries, and acceptance examples
 skill/      Reusable Agent Skill, public prompt structures, and JSON Schemas
 ```
 
+## Use Cases
+
+- Customer request triage
+- Helpdesk reply standardization
+- AI-assisted reply drafting
+- Missing-information collection
+- Knowledge base and phrasebook extension
+- Human-in-the-loop workflow design
+
 ## Safety Boundary
 
 This public repository does **not** include:
@@ -108,6 +130,7 @@ Read the full [release boundary](docs/10-release-boundary.md).
 - Missing-information gate
 - Copy-ready draft replies
 - Mandatory human review and confirm-copy workflow
+- Structured fields, prompts, schemas, and sanitized validation examples
 
 ### v1.1.0: Knowledge Base Enhancement
 
@@ -116,6 +139,10 @@ Read the full [release boundary](docs/10-release-boundary.md).
 - Knowledge match records
 - Tutorial references
 - Confirmed-answer retention rules
+
+## Search Keywords
+
+`ticket copilot` · `customer request triage` · `helpdesk workflow` · `AI reply assistant` · `human-in-the-loop` · `knowledge base` · `prompt engineering` · `workflow automation`
 
 ## License
 
