@@ -2,7 +2,7 @@
 
 ## Goal
 
-Format the reply after customer service staff review or revision.
+Format the reply after employee review or revision.
 
 ## Suggested Output
 
@@ -16,5 +16,5 @@ Format the reply after customer service staff review or revision.
 
 - Use a formal customer-facing tone.
 - Include tutorial title and link when available.
-- For high-risk cases, explicitly recommend escalation to human support.
+- For high-risk cases, explicitly recommend manual handling by an employee.
 - Do not state unverified conclusions as facts.
